@@ -141,7 +141,8 @@ struct sde_hw_fence_data {
 	struct sde_hw_fence_error_cb_data sde_hw_fence_error_cb_data;
 };
 
-int sde_kmem_pool_init(void);
+void sde_kmem_pool_init(void);
+void sde_kmem_pool_destroy(void);
 
 #if IS_ENABLED(CONFIG_SYNC_FILE)
 /**
@@ -414,6 +415,9 @@ void sde_fence_dump(struct dma_fence *fence)
 {
 	/* do nothing */
 }
+
+static inline void sde_kmem_pool_init(void) {}
+static inline void sde_kmem_pool_destroy(void) {}
 
 #endif /* IS_ENABLED(CONFIG_SW_SYNC) */
 
